@@ -1,0 +1,292 @@
+:root{
+  --pink1:#fff0f7;
+  --pink2:#ffd6ea;
+  --hot:#ff4fa0;
+  --ink:#4a2435;
+  --card: rgba(255,255,255,.82);
+  --shadow: 0 22px 60px rgba(255,79,160,.22);
+  --r: 24px;
+  --px: 10px;
+}
+
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
+
+body{
+  margin:0;
+  font-family: ui-rounded, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+  color:var(--ink);
+  overflow:hidden;
+  background:
+    radial-gradient(900px 600px at 20% 20%, #ffffff 0%, transparent 60%),
+    radial-gradient(900px 600px at 80% 30%, #ffe3f1 0%, transparent 55%),
+    linear-gradient(135deg, var(--pink1), var(--pink2));
+}
+
+/* Floating pixel hearts background */
+.bg{
+  position:fixed;
+  inset:-10vh -10vw;
+  pointer-events:none;
+  opacity:.95;
+  filter: drop-shadow(0 10px 14px rgba(255,79,160,.18));
+}
+
+.floatHeart{
+  position:absolute;
+  width: calc(var(--px)*3);
+  height: calc(var(--px)*3);
+  animation: floatUp var(--dur, 12s) linear infinite;
+  opacity:0;
+  transform: translateY(30vh) scale(var(--s, 1));
+}
+
+@keyframes floatUp{
+  0%{ opacity:0; transform: translateY(30vh) scale(var(--s, 1)); }
+  12%{ opacity:1; }
+  100%{ opacity:0; transform: translateY(-140vh) scale(var(--s, 1)); }
+}
+
+/* Pixel heart made of "pixels" via box-shadow */
+.pixel{
+  width: var(--px);
+  height: var(--px);
+  background: var(--c, var(--hot));
+  border-radius: 3px;
+  position:absolute;
+  left: var(--px);
+  top: var(--px);
+  box-shadow:
+    -10px 0 0 var(--c),
+    10px 0 0 var(--c),
+    -20px 10px 0 var(--c),
+    -10px 10px 0 var(--c),
+    0 10px 0 var(--c),
+    10px 10px 0 var(--c),
+    20px 10px 0 var(--c),
+    -10px 20px 0 var(--c),
+    0 20px 0 var(--c),
+    10px 20px 0 var(--c),
+    0 30px 0 var(--c);
+}
+
+/* Layout (mobile-first) */
+.wrap{
+  height:100%;
+  display:grid;
+  place-items:center;
+  padding: 14px;
+}
+
+.card{
+  width: min(860px, 100%);
+  background: var(--card);
+  border: 2px solid rgba(255,255,255,.9);
+  border-radius: var(--r);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  position:relative;
+  overflow:hidden;
+}
+
+.card::before{
+  content:"";
+  position:absolute; inset:-2px;
+  background:
+    radial-gradient(800px 260px at 20% 0%, rgba(255,79,160,.18), transparent 60%),
+    radial-gradient(800px 260px at 80% 0%, rgba(255,159,203,.16), transparent 55%);
+  pointer-events:none;
+}
+
+.header{
+  text-align:center;
+  padding: 18px 16px 8px;
+  position:relative;
+}
+
+.title{
+  margin:0;
+  font-size: clamp(26px, 6vw, 46px);
+  line-height:1.05;
+}
+
+.subtitle{
+  margin: 10px 0 0;
+  font-size: clamp(14px, 3.6vw, 16px);
+  opacity:.9;
+}
+
+/* GIFs: 1 column on mobile, 2 on wider screens */
+.gifs{
+  display:grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 10px 16px 6px;
+  position:relative;
+}
+
+@media (min-width: 700px){
+  .gifs{ grid-template-columns: 1fr 1fr; }
+}
+
+.gifBox{
+  margin:0;
+  background: rgba(255,255,255,.78);
+  border: 2px dashed rgba(255,79,160,.25);
+  border-radius: 18px;
+  overflow:hidden;
+  box-shadow: 0 14px 30px rgba(255,79,160,.10);
+  aspect-ratio: 4/3;
+}
+
+.gifBox img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+/* Buttons: large & tap-friendly */
+.actions{
+  padding: 10px 16px 18px;
+  display:grid;
+  gap: 12px;
+  justify-items:center;
+  position:relative;
+}
+
+.btn{
+  width: min(420px, 100%);
+  min-height: 48px; /* tap target */
+  border:0;
+  border-radius: 999px;
+  padding: 14px 18px;
+  font-weight: 900;
+  font-size: 16px;
+  cursor:pointer;
+  transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+  user-select:none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.yes{
+  color:#fff;
+  background: linear-gradient(180deg, #ff79b6, #ff3f95);
+  box-shadow: 0 14px 26px rgba(255,63,149,.28);
+}
+
+.yes:active{ transform: translateY(1px) scale(.99); }
+
+.noWrap{
+  width: min(420px, 100%);
+  height: 56px;
+  position:relative;
+}
+
+.no{
+  position:absolute;
+  left:0;
+  top:0;
+  width: 180px; /* stays reasonable on mobile */
+  background: rgba(255,255,255,.9);
+  color: var(--ink);
+  border: 2px solid rgba(255,79,160,.35);
+  box-shadow: 0 12px 22px rgba(74,36,53,.08);
+}
+
+@media (min-width: 700px){
+  .no{ width: 200px; }
+}
+
+.hint{
+  margin: 0;
+  font-size: 13px;
+  opacity:.8;
+  text-align:center;
+}
+
+/* Modal (mobile-safe) */
+.overlay{
+  position:fixed;
+  inset:0;
+  display:none;
+  place-items:center;
+  padding: 16px;
+  background: rgba(255,232,245,.68);
+  backdrop-filter: blur(8px);
+  z-index:50;
+}
+
+.modal{
+  width: min(740px, 100%);
+  max-height: min(86vh, 760px);
+  overflow:auto;
+  -webkit-overflow-scrolling: touch;
+  background:#fff;
+  border-radius: 22px;
+  border: 2px solid rgba(255,79,160,.30);
+  box-shadow: 0 26px 70px rgba(255,79,160,.25);
+  padding: 18px;
+  text-align:center;
+}
+
+.bigGif{
+  width: min(520px, 100%);
+  aspect-ratio: 4/3;
+  margin: 0 auto 12px;
+  border-radius: 18px;
+  overflow:hidden;
+  border: 2px dashed rgba(255,79,160,.25);
+  background:#fff;
+}
+
+.bigGif img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.close{
+  background:#fff;
+  border: 2px solid rgba(255,79,160,.35);
+  color:var(--ink);
+}
+
+/* Confetti hearts */
+.burst{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  display:none;
+  z-index:60;
+  overflow:hidden;
+}
+
+.conf{
+  position:absolute;
+  width:12px;
+  height:12px;
+  background: var(--cc, var(--hot));
+  border-radius:3px;
+  transform: rotate(45deg);
+  opacity:.95;
+  animation: pop 1.25s ease-out forwards;
+}
+
+.conf::before,.conf::after{
+  content:"";
+  position:absolute;
+  width:12px;
+  height:12px;
+  border-radius:3px;
+  background:inherit;
+}
+.conf::before{ left:-9px; }
+.conf::after{ top:-9px; }
+
+@keyframes pop{
+  0%{ transform: translate(0,0) rotate(45deg) scale(.85); opacity:0;}
+  15%{ opacity:1;}
+  100%{ transform: translate(var(--dx),var(--dy)) rotate(45deg) scale(1.1); opacity:0;}
+}

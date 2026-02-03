@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Will you be my Valentine? 💖</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <div class="bg" id="bg" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <section class="card" role="main" aria-label="Valentine card">
+      <header class="header">
+        <h1 class="title">Will you be my Valentine? 💘</h1>
+        <p class="subtitle" id="subtitle">I’m asking in the cutest way possible 🥺🩷</p>
+      </header>
+
+      <section class="gifs" aria-label="Cute cat gifs">
+        <figure class="gifBox">
+          <img
+            src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif"
+            alt="A cute cat gif"
+            loading="lazy"
+          />
+        </figure>
+
+        <figure class="gifBox">
+          <img
+            src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+            alt="A cute cat celebration gif"
+            loading="lazy"
+          />
+        </figure>
+      </section>
+
+      <section class="actions" aria-label="Answer buttons">
+        <button class="btn yes" id="yesBtn" type="button">YES!! 💖</button>
+
+        <div class="noWrap" aria-label="No button area">
+          <button class="btn no" id="noBtn" type="button">no 😭</button>
+        </div>
+
+        <p class="hint" id="hint">sorii the “no” button is shy nyahahahaha</p>
+      </section>
+    </section>
+  </main>
+
+  <div class="burst" id="burst" aria-hidden="true"></div>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalDesc">
+    <div class="modal" role="document">
+      <h2 id="modalTitle">YIPPIIEEEEEEE!! 💞</h2>
+      <p id="modalDesc">Omkii now you’re officially my Valentine 😌💘</p>
+
+      <div class="bigGif" aria-label="Celebration gif">
+        <img
+          src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif"
+          alt="A cat gif celebrating"
+          loading="lazy"
+        />
+      </div>
+
+      <button class="btn close" id="closeBtn" type="button">I LOVE YOU SO MUCHINGGGG 🥰</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
